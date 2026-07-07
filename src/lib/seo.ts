@@ -12,7 +12,7 @@ interface PageSeo {
 }
 
 export function buildMetadata({ title, description, path = "/", image }: PageSeo = {}): Metadata {
-  const fullTitle = title ? `${title} | ${club.name}` : `${club.name} | ${club.tagline}`;
+  const fullTitle = title ? `${title} | ${club.name}` : club.name;
   const desc = description ?? club.blurb;
   const url = `${SITE_URL}${path}`;
   const ogImage = image ?? "/images/mariachi_photos/mariachi_main.png";
