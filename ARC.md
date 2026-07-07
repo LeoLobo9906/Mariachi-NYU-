@@ -1,4 +1,4 @@
-# CLAUDE.md — NYU Mariachi Website
+# ARC.md — NYU Mariachi Violetas Website Architecture
 
 Framework documentation and working guide for the NYU Mariachi website. Read this before making changes. It is the single source of truth for how this project is structured and how to extend it.
 

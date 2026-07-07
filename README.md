@@ -1,43 +1,104 @@
-# NYU Mariachi — Website
+# NYU Mariachi Violetas — Website
 
-Official site for **NYU Mariachi**, a student-led mariachi ensemble at New York University.
-Built to look professional, load fast, rank in search, and make booking us effortless.
+The official website for **NYU Mariachi Violetas**, a student-led mariachi ensemble at New York University. Built to look professional, load fast, rank in search, and make it effortless for people to book the group.
 
-> Full architecture, conventions, and "how to edit" guide live in **[CLAUDE.md](./CLAUDE.md)**.
+**Live:** [nyumariachi.com](https://nyumariachi.com)
 
-## Stack
-Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion + Lenis (motion) · Web3Forms (email) · Vercel (hosting).
+---
+
+## What it is
+
+A cinematic, culturally-rooted marketing site with two audiences in mind: people who might **hire** the group, and students who might **join**. Highlights:
+
+- **Immersive, motion-driven UI** — smooth scroll (Lenis), scroll-triggered reveals and parallax (Framer Motion), a full-screen hero.
+- **Hand-built SVG artwork** — a detailed **papel picado** garland (cut-paper banners with mariachi instruments) that hangs in a real catenary swag, plus a **sugar-skull (calavera)** motif. All generated in code, themed to NYU violet.
+- **Auto-generated roster** — member cards are built directly from the photo folders (`npm run build-roster`), grouped by semester and section.
+- **Repertoire with real album art** — 49 songs, cover images fetched from Apple's iTunes API.
+- **Booking / contact form** — validates required event details and emails the club inbox via Web3Forms (no backend server needed).
+- **SEO-ready** — per-page metadata, `MusicGroup` structured data, sitemap, robots, and a logo favicon.
+- **Fully responsive** and accessible, on a clean white + NYU-violet design system.
+
+## Tech stack
+
+Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion + Lenis · Web3Forms · Vercel.
+
+> Deep-dive on architecture, conventions, and file layout: **[ARC.md](./ARC.md)**.
+
+---
 
 ## Run it locally
+
 ```bash
 npm install
-# edit .env and paste your WEB3FORMS_ACCESS_KEY (form is optional for local dev)
-npm run dev                  # http://localhost:3000
+cp -n .env.example .env 2>/dev/null || true   # then paste your key (see below)
+npm run dev                                    # http://localhost:3000
 ```
 
-## Edit content (no code needed)
+Create a `.env` (gitignored) with:
+
+```
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-web3forms-key   # makes the contact form send
+NEXT_PUBLIC_SITE_URL=https://nyumariachi.com
+```
+
+The site runs fine without the key — the contact form just won't send until it's set.
+
+---
+
+## Editing content (no coding needed)
+
 Everything that changes each semester lives in `src/content/`:
-- `roster.ts` — members (auto-generated; run `npm run build-roster` after adding photos)
-- `repertoire.ts` — songs / album covers
-- `performances.ts` — shows
-- `club.ts` — name, email, socials, blurb
 
-## Add members
-1. Drop headshots in `public/images/roster/<semester>/<section>/<name>_<instrument>.png`
-2. `npm run build-roster`
-The newest semester (first alphabetically-by-date) is marked `current` and shown by default.
+| File | What it controls |
+|---|---|
+| `roster.ts` | Members (auto-generated — see below) |
+| `repertoire.ts` | Songs and their interpreters |
+| `performances.ts` | Events (currently unused; Performances tab is archived) |
+| `club.ts` | Name, email, socials, blurb, audition-form link |
 
-## Add repertoire cover art
-All 49 songs live in `src/content/repertoire.ts`. Covers are auto-matched by title
-(`public/images/repertoire/<slug>.jpg`). To fetch the most famous album cover for each
-from Apple's iTunes API:
+**Add / update members**
+1. Drop headshots in `public/images/roster/<semester>/<section>/<name>_<instrument>.png` (e.g. `spring_2026/violins/clarissa_violin.png`).
+2. Run `npm run build-roster`. The newest semester is shown by default.
+
+**Add photos to the Media gallery**
+1. Drop images in `public/images/mariachi_photos/`.
+2. Run `npm run build-gallery`.
+
+**Add repertoire cover art**
+Covers auto-match by song title. To fetch them from Apple's iTunes API:
 ```bash
-npm run fetch-covers              # downloads missing covers
-npm run fetch-covers -- --force   # re-download all
+npm run fetch-covers            # download missing covers
+npm run fetch-covers -- --force # re-download all
 ```
-Any song without a match shows a styled placeholder card — safe to leave, or drop art in manually.
-To add a song: add it to `src/content/repertoire.ts` **and** the `SONGS` list in
-`scripts/fetch-repertoire-covers.mjs`, then re-run the script.
+Songs without a match show a styled placeholder — safe to leave.
 
-## Deploy
-Push to `main` → Vercel builds and ships. Add the env vars from `.env.example` in the Vercel dashboard.
+**Change the name, email, socials, or audition link** → edit `src/content/club.ts` (it flows everywhere automatically).
+
+---
+
+## Deploying
+
+Hosted free on **Vercel**. Every push to the `main` branch auto-rebuilds and redeploys:
+
+```bash
+git add -A
+git commit -m "describe your change"
+git push
+```
+
+Secrets live in Vercel → Project → **Environment Variables** (`NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`, `NEXT_PUBLIC_SITE_URL`), never in the repo.
+
+---
+
+## Handover / maintainers
+
+This site is meant to outlast any one member. To keep the club in control:
+
+**Accounts that must be transferred to the next maintainer** (ideally all owned by the club's shared email, `nyumariachi@gmail.com`):
+
+1. **GitHub** — this repository (add the incoming maintainer as a collaborator, or transfer ownership).
+2. **Vercel** — hosting + the `nyumariachi.com` domain (the site auto-deploys from GitHub `main`).
+3. **Web3Forms** — the contact-form account; submissions are emailed to whatever address owns the access key.
+4. **The club Gmail** — receives booking inquiries and ties the above together.
+
+**To take over the site, a new maintainer only needs to:** clone the repo, run it locally (above), edit content in `src/content/` + `public/images/`, and `git push` — Vercel handles the rest. Read **[ARC.md](./ARC.md)** for the full picture.
