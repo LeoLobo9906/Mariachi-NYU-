@@ -7,26 +7,29 @@ import { Parallax } from "@/components/ui/Parallax";
 import { Marquee } from "@/components/ui/Marquee";
 import { MemberCard } from "@/components/members/MemberCard";
 import { SongCard } from "@/components/repertoire/SongCard";
-import { SugarSkull } from "@/components/ui/SugarSkull";
-import { club, sectionCopy } from "@/content/club";
+import { Mono } from "@/components/ui/Mono";
+import { club } from "@/content/club";
 import { roster, SECTION_LABELS } from "@/content/roster";
 import { repertoire } from "@/content/repertoire";
 
 const GROUPS = [
- { key: "armonia", photo: "/images/mariachi_photos/photo_1.png" },
- { key: "violins", photo: "/images/mariachi_photos/photo_4.png" },
- { key: "woodwind_brass", photo: "/images/mariachi_photos/photo_7.png" },
+ { key: "armonia", photo: "/images/groups/armonia.jpg" },
+ { key: "violins", photo: "/images/groups/violins.jpg" },
+ { key: "woodwind_brass", photo: "/images/groups/brass.jpg" },
 ];
 
 export default function HomePage() {
  const current = roster.find((s) => s.current) ?? roster[0];
  const preview = current.members.slice(0, 5);
+ // Short preview of the full story; full version lives on /about.
+ const storyPreview =
+ club.story.slice(0, 300).replace(/\s+\S*$/, "").replace(/[.,!]$/, "") + "…";
 
  return (
  <>
  <Hero />
 
- <Marquee items={["Ranchera", "Son Jalisciense", "Bolero", "Huapango", "Live in NYC"]} />
+ <Marquee items={["Ranchera", "Son Jalisciense", "Bolero", "Huapango", "Cumbia", "Corrido"]} />
 
  {/* About ---------------------------------------------------------- */}
  <section className="relative py-28 md:py-40">
@@ -35,17 +38,17 @@ export default function HomePage() {
  <div className="md:col-span-5">
  <Reveal>
  <h2 className="font-display text-5xl leading-[0.95] text-bone md:text-7xl">
- The NYU
- <br />
  Mariachi
  <br />
- <span className="text-gold">Violetas</span>
+ Violetas
+ <br />
+ <span className="text-gold">de NYU</span>
  </h2>
  </Reveal>
  </div>
  <div className="md:col-span-7">
  <Reveal delay={0.1}>
- <p className="text-lg leading-relaxed text-bone-dim md:text-xl">{club.blurb}</p>
+ <p className="text-lg leading-relaxed text-bone-dim md:text-xl">{storyPreview}</p>
  <Link
  href="/about"
  className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-widest text-gold hover:gap-3"
@@ -81,7 +84,6 @@ export default function HomePage() {
  {SECTION_LABELS[g.key]}
  </h3>
  </div>
- <p className="mt-4 text-sm leading-relaxed text-bone-dim">{sectionCopy[g.key]}</p>
  </div>
  </Reveal>
  ))}
@@ -100,7 +102,7 @@ export default function HomePage() {
  </div>
  </Reveal>
  <Link href="/repertoire" className="text-sm uppercase tracking-widest text-gold">
- Full setlist →
+ Full repertoire →
  </Link>
  </div>
  <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
@@ -116,7 +118,7 @@ export default function HomePage() {
  <Container>
  <div className="mb-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
  <Reveal>
- <h2 className="font-display text-5xl text-bone md:text-6xl">Meet your mariachi</h2>
+ <h2 className="font-display text-5xl text-bone md:text-6xl">Meet Your Mariachi</h2>
  </Reveal>
  <Link href="/members" className="text-sm uppercase tracking-widest text-gold">
  Full roster →
@@ -146,26 +148,20 @@ export default function HomePage() {
  <div className="absolute inset-0 bg-shadow/55" />
  <Container className="relative z-10 text-center">
  <Reveal>
- <SugarSkull className="mx-auto mb-6 h-24 w-auto text-white opacity-90" />
- <h2 className="font-display text-6xl text-white md:text-8xl">Wanna join?</h2>
+ <Mono className="mx-auto mb-6 h-24 w-auto text-white opacity-90" />
+ <h2 className="font-display text-6xl text-white md:text-8xl">Want to join?</h2>
  <p className="mx-auto mt-4 max-w-lg text-lg text-white/80">
- Whether you play, sing, or want to hire us for your event, let&apos;s talk.
+ We are always in search of new talent. All NYU students are welcome!
  </p>
- <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+ <div className="mt-10 flex justify-center">
  <a
  href={club.auditionUrl}
  target="_blank"
  rel="noreferrer"
- className=" bg-white px-8 py-4 text-sm uppercase tracking-widest text-violet transition-transform hover:scale-105"
+ className="bg-white px-8 py-4 text-sm uppercase tracking-widest text-violet transition-transform hover:scale-105"
  >
  Audition now ↗
  </a>
- <Link
- href="/contact"
- className=" border border-white/50 px-8 py-4 text-sm uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-violet"
- >
- Book us to play
- </Link>
  </div>
  </Reveal>
  </Container>

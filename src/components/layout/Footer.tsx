@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { club } from "@/content/club";
-import { SugarSkull } from "@/components/ui/SugarSkull";
+import { Mono } from "@/components/ui/Mono";
 import { Container } from "./Container";
 
 export function Footer() {
  return (
  <footer className="relative overflow-hidden border-t border-violet/15 bg-ink-800">
  {/* faint calavera watermark */}
- <SugarSkull className="pointer-events-none absolute -right-6 -top-10 h-56 w-auto text-violet/[0.06]" />
+ <Mono className="pointer-events-none absolute -right-6 -top-10 h-56 w-auto text-violet opacity-[0.08]" />
  <Container className="relative z-10 py-16">
  <div className="grid gap-10 md:grid-cols-3">
  <div>

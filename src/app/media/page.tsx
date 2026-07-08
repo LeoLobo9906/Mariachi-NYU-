@@ -18,7 +18,7 @@ export default function MediaPage() {
       <PageHeader
         eyebrow="Watch & listen"
         title="Media"
-        intro="Moments from the stage and the street, NYU Mariachi in the wild."
+        intro="Moments from the stage and the street, Mariachi Violetas in the wild."
       />
       <section className="pb-32">
         <Container>

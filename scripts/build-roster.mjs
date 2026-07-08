@@ -8,8 +8,8 @@ const OUT = join(process.cwd(), "src", "content", "roster.ts");
 
 const SECTION_LABEL = {
   armonia: "Armonía",
-  violins: "Violins",
-  woodwind_brass: "Woodwind & Brass",
+  violins: "Violins & Flutes",
+  woodwind_brass: "Brass",
   vocalists: "Vocalists",
 };
 
@@ -20,7 +20,10 @@ const INSTRUMENT_LABEL = {
   supranosax: "Soprano Sax", singer: "Vocals",
 };
 
+// Preferred display spellings (e.g. accents) that a filename can't easily carry.
+const NAME_FIX = { anahi: "Anahí" };
 const titleCase = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const prettyName = (raw) => NAME_FIX[raw.toLowerCase()] ?? titleCase(raw);
 const prettyInstrument = (raw) => INSTRUMENT_LABEL[raw] ?? titleCase(raw);
 const prettySemester = (id) => {
   const [term, year] = id.split("_");
@@ -52,7 +55,7 @@ const data = semesters.map((semId, i) => {
       const stem = file.replace(/\.[^.]+$/, "");
       const [namePart, instrPart = ""] = stem.split(/_(.+)/);
       const instruments = instrPart.split("-").filter(Boolean).map(prettyInstrument);
-      const name = titleCase(namePart);
+      const name = prettyName(namePart);
       members.push({
         name,
         section,

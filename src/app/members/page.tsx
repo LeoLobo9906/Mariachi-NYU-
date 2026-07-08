@@ -16,9 +16,9 @@ export default function MembersPage() {
     <>
       <LogoWatermark />
       <PageHeader
-        eyebrow="Get to meet your mariachi"
+        eyebrow="Meet your mariachi"
         title="Members"
-        intro="Every semester brings new voices and strings. Browse the ensemble by term and section."
+        intro="Every semester brings new talent. Get to know our members, new and old!"
       />
       <section className="pb-32">
         <Container>

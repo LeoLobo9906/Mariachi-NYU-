@@ -36,14 +36,6 @@ export function Hero() {
  style={{ y: titleY, opacity: fade }}
  className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
  >
- <motion.p
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.3, duration: 0.8 }}
- className="mb-4 text-xs uppercase tracking-[0.4em] text-white/75"
- >
- New York University
- </motion.p>
  <h1 className="kinetic text-white">
  <span className="block text-[18vw] leading-[0.82] md:text-[13vw]">Mariachi</span>
  <span className="mt-1 block text-[11vw] leading-[0.82] text-violet-300 md:text-[7.5vw]">
@@ -56,27 +48,19 @@ export function Hero() {
  transition={{ delay: 0.4, duration: 0.8 }}
  className="mt-3 text-sm uppercase tracking-[0.35em] text-white/80"
  >
- The NYU Mariachi
- </motion.p>
- <motion.p
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.5, duration: 0.8 }}
- className="mt-6 max-w-md text-base text-white/80 md:text-lg"
- >
- Live mariachi from the heart of New York City. Authentic, electric, unforgettable.
+ de NYU
  </motion.p>
  <motion.div
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: 0.7, duration: 0.8 }}
- className="mt-8 flex gap-4"
+ className="mt-10 flex gap-4"
  >
  <Link
  href="/contact"
  className="btn-glow bg-white px-7 py-3 text-sm uppercase tracking-widest text-violet transition-transform hover:scale-105"
  >
- Hire us
+ Book us
  </Link>
  </motion.div>
  </motion.div>

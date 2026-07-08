@@ -4,8 +4,8 @@ import type { Semester } from "@/lib/types";
 
 export const SECTION_LABELS: Record<string, string> = {
   "armonia": "Armonía",
-  "violins": "Violins",
-  "woodwind_brass": "Woodwind & Brass",
+  "violins": "Violins & Flutes",
+  "woodwind_brass": "Brass",
   "vocalists": "Vocalists"
 };
 
@@ -16,13 +16,13 @@ export const roster: Semester[] = [
     "current": true,
     "members": [
       {
-        "name": "Ana",
-        "section": "woodwind_brass",
+        "name": "Anna",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2026/woodwind_brass/ana_flute.png"
+        "photo": "/images/roster/spring_2026/violins/anna_flute.png"
       },
       {
         "name": "Chris",
@@ -62,12 +62,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Erik",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2026/woodwind_brass/erik_flute.png"
+        "photo": "/images/roster/spring_2026/violins/erik_flute.png"
       },
       {
         "name": "Honglin",
@@ -153,13 +153,13 @@ export const roster: Semester[] = [
         "photo": "/images/roster/spring_2026/armonia/lizzy_guitar.png"
       },
       {
-        "name": "Mannu",
+        "name": "Manny",
         "section": "violins",
         "instruments": [
           "Violin"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2026/violins/mannu_violins.png"
+        "photo": "/images/roster/spring_2026/violins/manny_violins.png"
       },
       {
         "name": "Susie",
@@ -197,21 +197,21 @@ export const roster: Semester[] = [
     "members": [
       {
         "name": "Abi",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/fall_2025/woodwind_brass/abi_flute.png"
+        "photo": "/images/roster/fall_2025/violins/abi_flute.png"
       },
       {
-        "name": "Ana",
-        "section": "woodwind_brass",
+        "name": "Anna",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/fall_2025/woodwind_brass/ana_flute.png"
+        "photo": "/images/roster/fall_2025/violins/anna_flute.png"
       },
       {
         "name": "Chris",
@@ -341,21 +341,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Raka",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/fall_2025/woodwind_brass/raka_flute.png"
-      },
-      {
-        "name": "Rebecca",
-        "section": "woodwind_brass",
-        "instruments": [
-          "Trumpet"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/fall_2025/woodwind_brass/rebecca_trumpet.png"
+        "photo": "/images/roster/fall_2025/violins/raka_flute.png"
       },
       {
         "name": "Tom",
@@ -402,12 +393,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Abi",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2025/woodwind_brass/abi_flute.png"
+        "photo": "/images/roster/spring_2025/violins/abi_flute.png"
       },
       {
         "name": "Alex",
@@ -419,16 +410,7 @@ export const roster: Semester[] = [
         "photo": "/images/roster/spring_2025/violins/alex_violins.png"
       },
       {
-        "name": "Ana",
-        "section": "woodwind_brass",
-        "instruments": [
-          "Flute"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/spring_2025/woodwind_brass/ana_flute.png"
-      },
-      {
-        "name": "Anahi",
+        "name": "Anahí",
         "section": "armonia",
         "instruments": [
           "Guitar"
@@ -444,6 +426,15 @@ export const roster: Semester[] = [
         ],
         "isVocalist": false,
         "photo": "/images/roster/spring_2025/armonia/angel_guitar.png"
+      },
+      {
+        "name": "Anna",
+        "section": "violins",
+        "instruments": [
+          "Flute"
+        ],
+        "isVocalist": false,
+        "photo": "/images/roster/spring_2025/violins/anna_flute.png"
       },
       {
         "name": "Aria",
@@ -528,12 +519,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Kalsey",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2025/woodwind_brass/kalsey_flute.png"
+        "photo": "/images/roster/spring_2025/violins/kalsey_flute.png"
       },
       {
         "name": "Lizzy",
@@ -543,15 +534,6 @@ export const roster: Semester[] = [
         ],
         "isVocalist": false,
         "photo": "/images/roster/spring_2025/armonia/lizzy_guitar.png"
-      },
-      {
-        "name": "Miranda",
-        "section": "armonia",
-        "instruments": [
-          "Guitar"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/spring_2025/armonia/miranda_guitar.png"
       },
       {
         "name": "Rayan",
@@ -616,12 +598,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Abi",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/fall_2024/woodwind_brass/abi_flute.png"
+        "photo": "/images/roster/fall_2024/violins/abi_flute.png"
       },
       {
         "name": "Alex",
@@ -633,22 +615,14 @@ export const roster: Semester[] = [
         "photo": "/images/roster/fall_2024/violins/alex_violins.png"
       },
       {
-        "name": "Anahi",
-        "section": "armonia",
+        "name": "Anahí",
+        "section": "vocalists",
         "instruments": [
-          "Guitar"
+          "Guitar",
+          "Vocals"
         ],
-        "isVocalist": false,
-        "photo": "/images/roster/fall_2024/armonia/anahi_guitar.png"
-      },
-      {
-        "name": "Aria",
-        "section": "violins",
-        "instruments": [
-          "Violin"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/fall_2024/violins/aria_violins.png"
+        "isVocalist": true,
+        "photo": "/images/roster/fall_2024/vocalists/anahi_guitar-singer.png"
       },
       {
         "name": "Chris",
@@ -679,12 +653,13 @@ export const roster: Semester[] = [
       },
       {
         "name": "Eric",
-        "section": "armonia",
+        "section": "vocalists",
         "instruments": [
-          "Guitar"
+          "Guitar",
+          "Vocals"
         ],
-        "isVocalist": false,
-        "photo": "/images/roster/fall_2024/armonia/eric_guitar.png"
+        "isVocalist": true,
+        "photo": "/images/roster/fall_2024/vocalists/eric_guitar-singer.png"
       },
       {
         "name": "Eric",
@@ -694,15 +669,6 @@ export const roster: Semester[] = [
         ],
         "isVocalist": false,
         "photo": "/images/roster/fall_2024/woodwind_brass/eric_supranosax.png"
-      },
-      {
-        "name": "Genesis",
-        "section": "armonia",
-        "instruments": [
-          "Guitarrón"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/fall_2024/armonia/genesis_guitarron.png"
       },
       {
         "name": "Henry",
@@ -725,12 +691,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Kalsey",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/fall_2024/woodwind_brass/kalsey_flute.png"
+        "photo": "/images/roster/fall_2024/violins/kalsey_flute.png"
       },
       {
         "name": "Maryangel",
@@ -821,7 +787,7 @@ export const roster: Semester[] = [
         "photo": "/images/roster/spring_2024/woodwind_brass/aaron_trumpet.png"
       },
       {
-        "name": "Anahi",
+        "name": "Anahí",
         "section": "vocalists",
         "instruments": [
           "Vocals"
@@ -885,12 +851,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Grey",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2024/woodwind_brass/grey_flute.png"
+        "photo": "/images/roster/spring_2024/violins/grey_flute.png"
       },
       {
         "name": "Henry",
@@ -912,21 +878,21 @@ export const roster: Semester[] = [
       },
       {
         "name": "Jair",
+        "section": "violins",
+        "instruments": [
+          "Flute"
+        ],
+        "isVocalist": false,
+        "photo": "/images/roster/spring_2024/violins/jair_flute.png"
+      },
+      {
+        "name": "Jair",
         "section": "vocalists",
         "instruments": [
           "Vocals"
         ],
         "isVocalist": true,
         "photo": "/images/roster/spring_2024/vocalists/jair_singer.png"
-      },
-      {
-        "name": "Jair",
-        "section": "woodwind_brass",
-        "instruments": [
-          "Flute"
-        ],
-        "isVocalist": false,
-        "photo": "/images/roster/spring_2024/woodwind_brass/jair_flute.png"
       },
       {
         "name": "Jose",
@@ -939,12 +905,12 @@ export const roster: Semester[] = [
       },
       {
         "name": "Kalsey",
-        "section": "woodwind_brass",
+        "section": "violins",
         "instruments": [
           "Flute"
         ],
         "isVocalist": false,
-        "photo": "/images/roster/spring_2024/woodwind_brass/kalsey_flute.png"
+        "photo": "/images/roster/spring_2024/violins/kalsey_flute.png"
       },
       {
         "name": "Paola",

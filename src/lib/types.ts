@@ -45,7 +45,8 @@ export interface Club {
   name: string;
   shortName: string;
   tagline: string;
-  blurb: string;
+  blurb: string; // short version (home page)
+  story: string; // full description (About page)
   email: string;
   location: string;
   department: string;

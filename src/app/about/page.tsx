@@ -4,8 +4,9 @@ import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
-import { SugarSkull } from "@/components/ui/SugarSkull";
-import { club, sectionCopy } from "@/content/club";
+import { Mono } from "@/components/ui/Mono";
+import { LogoWatermark } from "@/components/ui/LogoWatermark";
+import { club } from "@/content/club";
 import { SECTION_LABELS } from "@/content/roster";
 import { buildMetadata } from "@/lib/seo";
 
@@ -16,15 +17,16 @@ export const metadata = buildMetadata({
 });
 
 const SECTIONS: { key: string; photo: string }[] = [
- { key: "armonia", photo: "/images/mariachi_photos/photo_1.png" },
- { key: "violins", photo: "/images/mariachi_photos/photo_4.png" },
- { key: "woodwind_brass", photo: "/images/mariachi_photos/photo_7.png" },
- { key: "vocalists", photo: "/images/mariachi_photos/photo_9.png" },
+ { key: "armonia", photo: "/images/groups/armonia.jpg" },
+ { key: "violins", photo: "/images/groups/violins.jpg" },
+ { key: "woodwind_brass", photo: "/images/groups/brass.jpg" },
+ { key: "vocalists", photo: "/images/mariachi_photos/photo_1.png" },
 ];
 
 export default function AboutPage() {
  return (
  <>
+ <LogoWatermark />
  <PageHeader
  eyebrow="Our story"
  title="About"
@@ -37,15 +39,15 @@ export default function AboutPage() {
  <div className="grid items-center gap-12 md:grid-cols-12 md:gap-14">
  <div className="md:col-span-7">
  <Reveal>
- <p className="font-display text-2xl leading-snug text-bone md:text-3xl">
- {club.blurb}
+ <p className="text-lg leading-relaxed text-bone-dim md:text-xl">
+ {club.story}
  </p>
  </Reveal>
  <Reveal delay={0.1}>
  <div className="mt-8 flex items-center gap-4">
- <SugarSkull className="h-12 w-auto text-violet" />
+ <Mono className="h-12 w-auto text-violet" />
  <span className="text-sm uppercase tracking-[0.3em] text-gold-300">
- Est. tradition · New York City
+ 2023 · New York University · Steinhardt
  </span>
  </div>
  </Reveal>
@@ -54,7 +56,7 @@ export default function AboutPage() {
  <Reveal delay={0.1}>
  <Parallax className="relative aspect-[4/5] w-full overflow-hidden neon-rim" distance={40}>
  <Image
- src="/images/mariachi_photos/photo_8.png"
+ src="/images/groups/diego.jpg"
  alt="NYU Mariachi Violetas performing"
  fill
  sizes="(max-width: 768px) 100vw, 40vw"
@@ -72,7 +74,7 @@ export default function AboutPage() {
  <Container>
  <Reveal>
  <p className="mb-3 text-xs uppercase tracking-[0.4em] text-gold">Inside the ensemble</p>
- <h2 className="mb-12 font-display text-4xl text-bone md:text-5xl">The four sections</h2>
+ <h2 className="mb-12 font-display text-4xl text-bone md:text-5xl">Our Sections</h2>
  </Reveal>
  <div className="grid gap-8 md:grid-cols-2">
  {SECTIONS.map((s, i) => (
@@ -91,7 +93,6 @@ export default function AboutPage() {
  {SECTION_LABELS[s.key]}
  </h3>
  </div>
- <p className="p-6 text-bone-dim">{sectionCopy[s.key]}</p>
  </article>
  </Reveal>
  ))}
@@ -104,7 +105,14 @@ export default function AboutPage() {
  <Container>
  <Reveal>
  <div className="mx-auto max-w-3xl bg-ink-800 px-8 py-16 text-center">
- <SugarSkull className="mx-auto mb-6 h-16 w-auto text-violet" />
+ <Image
+ src="/images/logo/nyu_logo.png"
+ alt=""
+ aria-hidden
+ width={80}
+ height={80}
+ className="mx-auto mb-6 h-16 w-auto"
+ />
  <p className="font-display text-3xl leading-snug text-bone md:text-4xl">
  Honoring cultural heritage, building community, and sharing live mariachi across New York City.
  </p>
@@ -112,7 +120,7 @@ export default function AboutPage() {
  href="/contact"
  className="btn-glow mt-10 inline-flex bg-gold px-8 py-4 text-sm uppercase tracking-widest text-white transition-transform hover:scale-105"
  >
- Book the group
+ Book Mariachi Violetas
  </Link>
  </div>
  </Reveal>

@@ -52,7 +52,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
         <Link href="/" onClick={() => setOpen(false)} className="group flex items-center gap-3" aria-label="NYU Mariachi Violetas home">
           <Image src="/images/logo/nyu_logo.png" alt="NYU" width={44} height={44} className="h-10 w-auto" priority />
-          <span className={`font-display text-xl tracking-tight ${light ? "text-white" : "text-bone"}`}>Mariachi</span>
+          <span className={`font-display text-xl tracking-tight ${light ? "text-white" : "text-bone"}`}>Mariachi Violetas</span>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
