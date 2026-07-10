@@ -12,7 +12,7 @@ export const club: Club = {
     "Mariachi Violetas is a student-led musical group at New York University dedicated to celebrating and sharing the rich traditions of Mexican mariachi music. Established in 2023 by founder Diego Quintanilla, the band has blossomed from just a few ambitious members into an ensemble of over 20 musicians and has become an official NYU club under the Steinhardt School of Culture, Education, and Human Development! Mariachi Violetas has had the privilege of performing across New York City at graduation ceremonies and art exhibition openings alike, as well as hosting our own events in collaboration with partners like Carnegie Hall. Mariachi Violetas is honored to preserve the musical dialogue of the Latin Diaspora by performing timeless songs beloved across generations.",
   email: "nyumariachi@gmail.com",
   location: "New York, NY",
-  department: "Steinhardt Department of Music",
+  department: "Steinhardt School of Culture, Education, and Human Development",
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/mariachi_nyu/" },
     { label: "TikTok", href: "https://www.tiktok.com/@mariachivioletas" },

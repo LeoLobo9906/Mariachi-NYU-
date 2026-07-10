@@ -20,7 +20,11 @@ const GROUPS = [
 
 export default function HomePage() {
  const current = roster.find((s) => s.current) ?? roster[0];
- const preview = current.members.slice(0, 5);
+ // De-dupe by photo — singers also appear in their instrument section, so the
+ // same person can be listed twice; show each unique headshot once.
+ const preview = Array.from(
+ new Map(current.members.map((m) => [m.photo, m])).values()
+ ).slice(0, 5);
  // Short preview of the full story; full version lives on /about.
  const storyPreview =
  club.story.slice(0, 300).replace(/\s+\S*$/, "").replace(/[.,!]$/, "") + "…";

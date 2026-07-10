@@ -18,7 +18,7 @@ export default function RepertoirePage() {
       <PageHeader
         eyebrow="Under our belt"
         title="Repertoire"
-        intro="We bring a growing catalog to every stage."
+        intro="We bring a growing repertoire to any stage. Here are just a few of our favorites!"
       />
       <section className="pb-32">
         <Container>

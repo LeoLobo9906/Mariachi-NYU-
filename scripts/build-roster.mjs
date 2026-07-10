@@ -1,5 +1,10 @@
 // Scans public/images/roster/<semester>/<section>/<name>_<instrument>.png
 // and writes src/content/roster.ts. Run: npm run build-roster
+//
+// Vocalists: many singers also play an instrument, so their headshot lives in
+// their instrument folder (armonia/violins/brass). Rather than duplicate photos,
+// the VOCALISTS map below lists who sang each semester by name, and the script
+// reuses each person's existing headshot (looked up across all semesters).
 import { readdirSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -18,6 +23,15 @@ const INSTRUMENT_LABEL = {
   violin: "Violin", violins: "Violin", trumpet: "Trumpet", trombone: "Trombone",
   trumbone: "Trombone", flute: "Flute", altosax: "Alto Sax", sopranosax: "Soprano Sax",
   supranosax: "Soprano Sax", singer: "Vocals",
+};
+
+// Who sang each semester (by filename first-name). Their headshot is reused from
+// their instrument folder — no need to duplicate the photo into a vocalists folder.
+const VOCALISTS = {
+  fall_2024: ["eric", "anahi", "paola", "kelsey", "clarissa", "abi", "jose", "thomas"],
+  spring_2025: ["eric", "anahi", "paola", "abi", "kelsey", "jose", "thomas"],
+  fall_2025: ["eric", "anahi", "jazmeen", "clarissa", "abi", "lizzy"],
+  spring_2026: ["lizzy", "jazmeen", "susie", "clarissa", "isabella"],
 };
 
 // Preferred display spellings (e.g. accents) that a filename can't easily carry.
@@ -46,25 +60,84 @@ const semesters = dirs(ROOT).sort((a, b) => {
   if (yb !== ya) return Number(yb) - Number(ya);
   return (TERM_ORDER[tb] ?? 0) - (TERM_ORDER[ta] ?? 0);
 });
+const semOrder = Object.fromEntries(semesters.map((id, i) => [id, i]));
 
-const data = semesters.map((semId, i) => {
-  const sections = dirs(join(ROOT, semId));
-  const members = [];
-  for (const section of sections) {
+// --- Pass 1: read every photo file into raw members + a global photo index ----
+const rawBySem = {};
+const photoIndex = {}; // stem -> [{ semId, order, isSinger, photo }]
+
+for (const semId of semesters) {
+  const list = [];
+  for (const section of dirs(join(ROOT, semId))) {
     for (const file of files(join(ROOT, semId, section))) {
-      const stem = file.replace(/\.[^.]+$/, "");
-      const [namePart, instrPart = ""] = stem.split(/_(.+)/);
+      // A trailing `~tag` (e.g. name_instrument~v2.png) is a cache-buster so an
+      // updated photo gets a fresh URL; it's ignored when parsing name/instrument.
+      const fileStem = file.replace(/\.[^.]+$/, "").replace(/~[^~]*$/, "");
+      const [namePart, instrPart = ""] = fileStem.split(/_(.+)/);
+      const stem = namePart.toLowerCase();
       const instruments = instrPart.split("-").filter(Boolean).map(prettyInstrument);
-      const name = prettyName(namePart);
-      members.push({
-        name,
+      const isSinger = /singer|vocal/i.test(instrPart);
+      const photo = `/images/roster/${semId}/${section}/${file}`;
+      list.push({
+        stem,
+        name: prettyName(namePart),
         section,
         instruments: instruments.length ? instruments : ["Member"],
-        isVocalist: /singer|vocal/i.test(instrPart),
-        photo: `/images/roster/${semId}/${section}/${file}`,
+        isVocalist: isSinger,
+        photo,
       });
+      (photoIndex[stem] ??= []).push({ semId, order: semOrder[semId], isSinger, photo });
     }
   }
+  rawBySem[semId] = list;
+}
+
+// Find the best headshot for a person (stem), preferring the same semester,
+// then the nearest semester; among ties prefer a singer photo, then most recent.
+function findPhoto(stem, semId) {
+  const entries = photoIndex[stem];
+  if (!entries || !entries.length) return null;
+  const target = semOrder[semId];
+  const best = [...entries].sort((a, b) => {
+    const da = Math.abs(a.order - target);
+    const db = Math.abs(b.order - target);
+    if (da !== db) return da - db;
+    if (a.isSinger !== b.isSinger) return a.isSinger ? -1 : 1;
+    return a.order - b.order; // more recent first
+  })[0];
+  return best.photo;
+}
+
+// --- Pass 2: assemble each semester --------------------------------------------
+const data = semesters.map((semId, i) => {
+  // Instrument sections come straight from the folders.
+  const members = rawBySem[semId]
+    .filter((m) => m.section !== "vocalists")
+    .map(({ stem, ...m }) => m); // drop internal `stem`
+
+  // Vocalists: from the VOCALISTS map when defined, else the physical folder.
+  if (VOCALISTS[semId]) {
+    for (const stem of VOCALISTS[semId]) {
+      const photo = findPhoto(stem, semId);
+      if (!photo) {
+        console.warn(`  ! no photo found for vocalist "${stem}" in ${semId} — skipped`);
+        continue;
+      }
+      members.push({
+        name: prettyName(stem),
+        section: "vocalists",
+        instruments: ["Vocals"],
+        isVocalist: true,
+        photo,
+      });
+    }
+  } else {
+    for (const m of rawBySem[semId].filter((m) => m.section === "vocalists")) {
+      const { stem, ...rest } = m;
+      members.push(rest);
+    }
+  }
+
   members.sort((a, b) => a.name.localeCompare(b.name));
   return { id: semId, label: prettySemester(semId), current: i === 0, members };
 });

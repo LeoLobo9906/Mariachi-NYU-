@@ -43,11 +43,12 @@ mariachi-nyu/
 │   │   ├── logo/nyu_logo.png        # logo (also the favicon source + watermark)
 │   │   ├── mariachi_photos/         # hero + gallery photos (photo_1..N)
 │   │   ├── groups/                  # instrument-group photos: armonia/violins/brass.jpg + diego.jpg
+│   │   ├── event_photos/web/        # About "Performances & Collaborations" (web-sized only)
 │   │   ├── roster/                  # member headshots, by semester/section
 │   │   │   ├── spring_2026/{armonia,violins,woodwind_brass,vocalists}/
 │   │   │   └── ...
 │   │   ├── repertoire/              # song / album cover art (run fetch-covers)
-│   │   └── mono.png / mono.svg      # the group's moño emblem (vector-traced)
+│   │   └── mono.svg                 # the group's moño emblem (vector-traced)
 │   └── videos/                      # performance clips (video_1..N .mp4)
 │
 ├── src/
@@ -75,11 +76,12 @@ mariachi-nyu/
 │   │   └── forms/                  # ContactForm (client — posts to Web3Forms)
 │   │
 │   ├── content/                    # ← EDIT HERE to change site content ("the CMS")
-│   │   ├── club.ts                 # name, tagline, blurb (home) + story (About), email, socials, auditionUrl
+│   │   ├── club.ts                 # name, tagline, blurb (home) + story (About), email, department, socials, auditionUrl
 │   │   ├── roster.ts               # members by semester → section (AUTO-GENERATED)
 │   │   ├── repertoire.ts           # songs with interpreter + genre
 │   │   ├── videos.ts               # Media video clip paths + order
 │   │   ├── gallery.ts              # Media photos (AUTO-GENERATED)
+│   │   ├── events.ts               # About "Performances & Collaborations" cards
 │   │   └── performances.ts         # events (archived page)
 │   │
 │   ├── lib/                        # types.ts, email.ts, seo.ts, utils.ts (slugify)
@@ -94,7 +96,10 @@ mariachi-nyu/
 └── .env                            # (gitignored) NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY, NEXT_PUBLIC_SITE_URL
 ```
 
-**Section labels** (Armonía, Violins & Flutes, Brass, Vocalists) and **name fixes** (e.g. Anahí) live in `scripts/build-roster.mjs`; re-run `npm run build-roster` after changing them or the photos.
+**`scripts/build-roster.mjs`** owns roster generation; re-run `npm run build-roster` after any change:
+- **Section labels** (Armonía, Violins & Flutes, Brass, Vocalists) and **name fixes** (`NAME_FIX`, for accents a filename can't carry, e.g. `anahi`→Anahí).
+- **Vocalists** are driven by the `VOCALISTS` map (semester → first names). Singers reuse their instrument-folder headshot instead of a duplicated photo; if a singer has no photo that semester, the script reuses their nearest-semester headshot.
+- A trailing **`~tag`** on a filename (e.g. `susie_harp~v2.png`) is stripped when parsing name/instrument, so it can be used as a cache-buster if a replaced photo won't refresh (changes the URL). None are in use currently.
 
 ---
 

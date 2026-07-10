@@ -8,6 +8,7 @@ import { Mono } from "@/components/ui/Mono";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { club } from "@/content/club";
 import { SECTION_LABELS } from "@/content/roster";
+import { events } from "@/content/events";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -92,6 +93,43 @@ export default function AboutPage() {
  <h3 className="absolute bottom-4 left-5 font-display text-3xl text-white">
  {SECTION_LABELS[s.key]}
  </h3>
+ </div>
+ </article>
+ </Reveal>
+ ))}
+ </div>
+ </Container>
+ </section>
+
+ {/* Performances & collaborations ------------------------------------- */}
+ <section className="py-20 md:py-28">
+ <Container>
+ <Reveal>
+ <p className="mb-3 text-xs uppercase tracking-[0.4em] text-gold">Where we&apos;ve played</p>
+ <h2 className="mb-4 font-display text-4xl text-bone md:text-5xl">
+ Performances &amp; Collaborations
+ </h2>
+ <p className="mb-12 max-w-2xl text-lg leading-relaxed text-bone-dim">
+ A few of the many performance opportunities we&apos;ve had over the past three years,
+ and some of the wonderful organizations and individuals with whom we&apos;ve collaborated.
+ </p>
+ </Reveal>
+ <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+ {events.map((e, i) => (
+ <Reveal key={e.title} delay={(i % 3) * 0.08}>
+ <article className="group flex h-full flex-col overflow-hidden border border-violet/15 bg-ink-800">
+ <div className="relative aspect-[4/3] overflow-hidden">
+ <Image
+ src={e.photo}
+ alt={e.title}
+ fill
+ sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+ className={`object-cover transition-transform duration-700 group-hover:scale-105 ${e.focus ?? ""}`}
+ />
+ </div>
+ <div className="flex flex-1 flex-col p-6">
+ <h3 className="font-display text-2xl leading-tight text-bone">{e.title}</h3>
+ <p className="mt-3 text-sm leading-relaxed text-bone-dim">{e.blurb}</p>
  </div>
  </article>
  </Reveal>

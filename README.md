@@ -56,12 +56,22 @@ Everything that changes each semester lives in `src/content/`:
 | `repertoire.ts` | Songs and their interpreters |
 | `videos.ts` | Media page video clips + their order |
 | `gallery.ts` | Media page photos (auto-generated) |
+| `events.ts` | About page "Performances & Collaborations" cards (title, blurb, photo, optional `focus` crop) |
 | `performances.ts` | Events (currently unused; Performances tab is archived) |
-| `club.ts` | Name, email, socials, short `blurb` (home) + full `story` (About), audition-form link |
+| `club.ts` | Name, email, socials, department, short `blurb` (home) + full `story` (About), audition-form link |
 
 **Add / update members**
 1. Drop headshots in `public/images/roster/<semester>/<section>/<name>_<instrument>.png` (e.g. `spring_2026/violins/clarissa_violin.png`).
 2. Run `npm run build-roster`. The newest semester is shown by default.
+
+Notes on the roster script (`scripts/build-roster.mjs`):
+- **Vocalists** — singers usually also play an instrument, so their headshot lives in their instrument folder. Instead of duplicating photos, list who sang each semester in the `VOCALISTS` map (by first name); the script reuses each person's existing headshot in the Vocalists section.
+- **Display-name fixes** for accents a filename can't carry live in the `NAME_FIX` map (e.g. `anahi` → `Anahí`). For normal spellings, just name the file correctly (e.g. `kelsey_flute.png`).
+- **Replacing a photo that won't refresh** — because CDN/browser caches key on the URL, overwriting a file with the same name can occasionally keep showing the old image. If that happens, rename it with a `~v2` cache-bust tag (e.g. `susie_harp~v2.png`); the tag is ignored when parsing name/instrument. Re-run `npm run build-roster`.
+
+**Add About-page event photos** ("Performances & Collaborations")
+1. Drop images in `public/images/event_photos/web/` (keep them web-sized — roughly ≤1600px, under ~500KB).
+2. Add an entry (title, blurb, photo path) to `src/content/events.ts`. Order = display order. Add `focus: "object-top"` (or `object-bottom`) if a photo needs a different crop.
 
 **Add photos to the Media gallery**
 1. Drop images in `public/images/mariachi_photos/`.
