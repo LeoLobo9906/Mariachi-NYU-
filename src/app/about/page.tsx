@@ -130,6 +130,24 @@ export default function AboutPage() {
  <div className="flex flex-1 flex-col p-6">
  <h3 className="font-display text-2xl leading-tight text-bone">{e.title}</h3>
  <p className="mt-3 text-sm leading-relaxed text-bone-dim">{e.blurb}</p>
+ {e.credit && (
+ <p className="mt-auto pt-4 text-xs text-bone-dim/70">
+ Photo — {e.credit.name}
+ {e.credit.ig && (
+ <>
+ {" · "}
+ <a
+ href={`https://www.instagram.com/${e.credit.ig}/`}
+ target="_blank"
+ rel="noreferrer"
+ className="text-gold hover:underline"
+ >
+ @{e.credit.ig}
+ </a>
+ </>
+ )}
+ </p>
+ )}
  </div>
  </article>
  </Reveal>

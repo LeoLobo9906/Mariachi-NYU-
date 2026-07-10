@@ -8,6 +8,8 @@ export type EventItem = {
   // Optional crop focus (Tailwind object-position class), e.g. "object-top".
   // Defaults to centered.
   focus?: string;
+  // Optional photo credit. `ig` is the Instagram handle without the "@".
+  credit?: { name: string; ig?: string };
 };
 
 export const events: EventItem[] = [
@@ -28,6 +30,7 @@ export const events: EventItem[] = [
     blurb:
       "Opening of artist Karla Diaz’s Ya Mero exhibition at the Latinx Project.",
     photo: "/images/event_photos/web/ya-mero.jpg",
+    credit: { name: "Argenis Apolinario", ig: "argenisphoto" },
   },
   {
     title: "Aguas Frescas",
@@ -35,6 +38,7 @@ export const events: EventItem[] = [
       "Collaboration with musical artist DEBIT for an event celebrating 10 years of Bárbara Sánchez-Kane’s cross-disciplinary fashion label.",
     photo: "/images/event_photos/web/aguas-frescas.jpg",
     focus: "object-top",
+    credit: { name: "Krischan Singh", ig: "kr.schan" },
   },
   {
     title: "NYU Latine Student Celebration",

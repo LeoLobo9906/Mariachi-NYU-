@@ -56,7 +56,7 @@ Everything that changes each semester lives in `src/content/`:
 | `repertoire.ts` | Songs and their interpreters |
 | `videos.ts` | Media page video clips + their order |
 | `gallery.ts` | Media page photos (auto-generated) |
-| `events.ts` | About page "Performances & Collaborations" cards (title, blurb, photo, optional `focus` crop) |
+| `events.ts` | About page "Performances & Collaborations" cards (title, blurb, photo, optional `focus` crop + photo `credit`) |
 | `performances.ts` | Events (currently unused; Performances tab is archived) |
 | `club.ts` | Name, email, socials, department, short `blurb` (home) + full `story` (About), audition-form link |
 
